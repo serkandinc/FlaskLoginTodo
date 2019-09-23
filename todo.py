@@ -8,12 +8,13 @@ from flask_bootstrap import Bootstrap
 from functools import wraps #decorators için,
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user  #loginmanager için
-
+import os
 
 
 app = Flask(__name__)
+dirname = os.path.dirname(__file__)
 app.config['SECRET_KEY'] = 'superkey!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/LENOVO/Desktop/istanbul/istanbul.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + str(os.path.join(dirname, 'istanbul.db'))
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
