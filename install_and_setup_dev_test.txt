@@ -1,0 +1,32 @@
+
+- install python env
+
+$ sudo apt update
+$ sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+$ sudo apt install python3-venv
+$ cd /opt
+$ mkdir FlaskLoginTodo
+$ cd FlaskLoginTodo
+$ mkdir FlaskLoginTodoApp
+$ mkdir FlaskLoginTodoEnv
+$ python3.6 -m venv FlaskLoginTodoEnv
+$ source FlaskLoginTodoEnv/bin/activate
+
+- copy from code to /opt/FlaskLoginTodo/FlaskLoginTodoApp
+
+$ cd /opt/FlaskLoginTodo
+$ pip install wheel
+$ pip install gunicorn
+$ pip install -r FlaskLoginTodoApp/requirements.txt
+$ sudo ufw allow 5000
+$ cd /opt/FlaskLoginTodo/FlaskLoginTodoApp
+$ nohup gunicorn --bind 0.0.0.0:5000 wsgi:app &
+
+
+
+
+
+References:
+-----------
+
+- https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
