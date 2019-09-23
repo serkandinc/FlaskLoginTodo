@@ -1,3 +1,8 @@
+Root
+
+- test user add
+
+$ adduser test
 
 - install python env
 
@@ -20,7 +25,10 @@ $ pip install gunicorn
 $ pip install -r FlaskLoginTodoApp/requirements.txt
 $ sudo ufw allow 5000
 $ cd /opt/FlaskLoginTodo/FlaskLoginTodoApp
-$ nohup gunicorn --bind 0.0.0.0:5000 wsgi:app &
+$ chown -R test:test /opt/FlaskLoginTodo/
+$ sudo su test
+$ source ../FlaskLoginTodoEnv/bin/activate
+$ nohup gunicorn --workers 5 --bind 0.0.0.0:5000 wsgi:app &
 
 
 
